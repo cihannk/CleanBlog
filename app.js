@@ -32,6 +32,12 @@ app.post("/postadd", async (req, res) => {
     await Post.create(req.body);
     res.redirect("/");
 })
+app.get("/posts/:id", async (req, res) => {
+    const postId = req.params.id;
+    const post = await Post.findById(postId);
+    console.log(post);
+    res.render("post", {post});
+})
 
 const port = 3000;
 app.listen(port, ()=>{
